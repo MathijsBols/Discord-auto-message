@@ -1,13 +1,6 @@
 [
     {
-        "enable": true,
-        "auth": "PUT DISCORD TOKEN HERE",
-        "channel": "PUT CHANNEL ID HERE",
-        "message": "PUT MESSAGE HERE",
-        "wait": 5
-    },
-    {
-        "enable": true,
+        "enable": false,
         "auth": "PUT DISCORD TOKEN HERE",
         "channel": "PUT CHANNEL ID HERE",
         "message": "PUT MESSAGE HERE",

@@ -10,6 +10,9 @@ import json
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Varible to check if there is one or more entrys in config
+anyConfig = False
+
 # Open config
 def open_config():
     with open('config.json', 'r') as file:
@@ -39,6 +42,7 @@ def send_message(channel_id, message, oauth):
 def roll_messages():
     for entry in config:
         if entry["enable"]:  # Check if enabled
+            anyConfig = True
             # Set all varibles
             auth = entry['auth']
             channel = entry['channel']
@@ -69,19 +73,22 @@ if __name__ == "__main__":
     roll_messages()
 
     # Main loop
-    while True:
-        # Generate random number in minutes.
-        # CHANGE THIS TO CHANGE DELAY BETWEEN MESSAGES
-        wait_time = random.randint(60, 160) * 60
-       
-        # You can also set this to be persistent. Just uncomment the line below
-        #wait_time = 1
+    if anyConfig == True:
+        while True:
+            # Generate random number in minutes.
+            # CHANGE THIS TO CHANGE DELAY BETWEEN MESSAGES
+            wait_time = random.randint(60, 160) * 60
+        
+            # You can also set this to be persistent. Just uncomment the line below
+            #wait_time = 1
 
-        # Log time
-        logger.info(f"Waiting for {wait_time // 60} minutes...")
+            # Log time
+            logger.info(f"Waiting for {wait_time // 60} minutes...")
 
-        # Wait time
-        time.sleep(wait_time)
+            # Wait time
+            time.sleep(wait_time)
 
-        # Roll trough messages
-        roll_messages()
+            # Roll trough messages
+            roll_messages()
+    else:
+        logger.error("There is not an active entry in the config file. Bot wont start")
