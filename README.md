@@ -9,7 +9,7 @@ This is a project i made to automatically send discord message. I made this beca
 Run the docker image from my docker page!
 
 
-  [Docker Image](https://github.com/MathijsBols/Discord-auto-message) 
+  [Docker Image](https://hub.docker.com/repository/docker/mathijsbols/discord-auto-message/) 
   from dockerhub
 
   ## Deployment - Python
