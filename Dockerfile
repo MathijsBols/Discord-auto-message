@@ -10,8 +10,8 @@ COPY . /app
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir requests logger
 
-# Make sure config.json exists before running
-COPY config.json /app/config.json
+# Set environment variable for config file location (default to /app/config.json)
+ENV CONFIG_PATH=/app/config.json
 
 # Run the Python script when the container launches
 CMD ["python", "./message.py"]

@@ -1,6 +1,6 @@
 [
     {
-        "enable": false,
+        "enable": true,
         "auth": "PUT DISCORD TOKEN HERE",
         "channel": "PUT CHANNEL ID HERE",
         "message": "PUT MESSAGE HERE",

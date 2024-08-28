@@ -5,18 +5,23 @@ from datetime import datetime
 import requests
 import logging
 import json
+import os
 
 # Setup logging for docker contaier
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Varible to check if there is one or more entrys in config
-anyConfig = False
+
 
 # Open config
 def open_config():
-    with open('config.json', 'r') as file:
-        return json.load(file)
+    # Check for docker config file
+    if(os.path.exists('/config/config.json')):
+        with open('/config/config.json', 'r') as file:
+            return json.load(file)
+    else:
+        with open('config.json', 'r') as file:
+            return json.load(file)
 
     
 # Send Message
@@ -42,6 +47,7 @@ def send_message(channel_id, message, oauth):
 def roll_messages():
     for entry in config:
         if entry["enable"]:  # Check if enabled
+            global anyConfig
             anyConfig = True
             # Set all varibles
             auth = entry['auth']
@@ -73,7 +79,7 @@ if __name__ == "__main__":
     roll_messages()
 
     # Main loop
-    if anyConfig == True:
+    if anyConfig:
         while True:
             # Generate random number in minutes.
             # CHANGE THIS TO CHANGE DELAY BETWEEN MESSAGES
